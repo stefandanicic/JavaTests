@@ -76,11 +76,12 @@ public class RegisterPageTests {
 
     // Test 5 - Try to register new user with email from existing user
     @Test
-    public void TC05_submitEmailExistingUser() {
+    public void TC05_submitEmailExistingUser() throws InterruptedException {
         WebElement email = driver.findElement(By.id("signup_email"));
         WebElement createMyAccount = driver.findElement(By.id("signup_signup"));
         email.sendKeys("stefan.danicic@catenamedia.com");
         createMyAccount.click();
+        Thread.sleep(500);
         WebElement emailError = driver.findElements(By.className("error__text")).get(2);
         Assert.assertEquals("Email taken. If you have an account please sign in.",emailError.getText());
     }
